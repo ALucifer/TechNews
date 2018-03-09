@@ -1,11 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% set active = 'connexion' %}
+{% trans_default_domain 'connexion' %}
 
 {% block content %}
     <div class="row">
         <div class="col-xs-6 col-xs-push-3">
-            <h2 class="text-center">Connexion</h2>
+            <h2 class="text-center">
+                {{ 'nav.connection' | trans({}, 'nav') }}
+            </h2>
 
             {% if error %}
                 <div class="alert alert-danger">

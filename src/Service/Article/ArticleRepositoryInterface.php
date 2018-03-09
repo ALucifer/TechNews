@@ -30,6 +30,12 @@ interface ArticleRepositoryInterface
      */
     public function findLastFive(): ?iterable;
 
+    /**
+     * Retourne le nombre d'éléments de chaque source.
+     * @return int
+     */
+    public function count() :int;
+
     // public function findBy();
 
     // public function findOneBy();

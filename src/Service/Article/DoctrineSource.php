@@ -58,4 +58,12 @@ class DoctrineSource extends ArticleAbstractSource
     }
 
 
+    /**
+     * Retourne le nombre d'éléments de chaque source.
+     * @return int
+     */
+    public function count(): int
+    {
+        return $this->em->getRepository($this->entity)->findTotalArticles();
+    }
 }

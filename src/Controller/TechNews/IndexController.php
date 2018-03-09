@@ -16,14 +16,20 @@ use App\Service\Article\ArticleCatalogue;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class IndexController extends Controller
 {
 
+    /**
+     * @param ArticleCatalogue $catalogue
+     * @return Response
+     *
+     * @Route("/{_locale}")
+     */
     public function index(ArticleCatalogue $catalogue)
     {
         //$articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
-        dump($catalogue->findLastFive());
 
         $articles = $catalogue->findAll();
         $spotlights = $this->getDoctrine()->getRepository(Article::class)->findSpotlightArticles();
@@ -36,7 +42,13 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/category/{libelle}", name="index_category", methods={"GET"}, requirements={"libelle":"\w+"})
+     * @Route("/{_locale}/category/{libelle}",
+     *     name="index_category",
+     *     methods={"GET"},
+     *     requirements={
+     *     "libelle":"\w+",
+     *     "_locale": "en|fr"
+     * })
      */
     public function category ($libelle = "computing")
     {
@@ -48,9 +60,12 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/{category}/{slug}_{id}.html" ,
+     * @Route("/{_locale}/{category}/{slug}_{id}.html" ,
      *      name="index_article" ,
-     *      requirements={"id": "\d+"}
+     *      requirements={
+     *     "id": "\d+",
+     *     "_locale": "en|fr"
+     * }
      * )
      * @param $id
      * @param ArticleCatalogue $catalogue
@@ -77,7 +92,12 @@ class IndexController extends Controller
      * @param Auteur $auteur
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/auteur/{nom}-{prenom}", name="index_auteur")
+     * @Route("/_locale/auteur/{nom}-{prenom}",
+     *     name="index_auteur",
+     *     requirements={
+            "_locale": "en|fr"
+*     }
+     * )
      */
     public function auteur(Auteur $auteur)
     {

@@ -87,11 +87,23 @@ class ArticleCatalogue implements ArticleCatalogueInterface
     }
 
     /**
-     * @param $articles
-     * @return ArrayCollection
+     * Retourne le nombre d'éléments de chaque source.
+     * @return int
      */
-    private function sortOverSources(ArrayCollection $articles) : ArrayCollection
+    public function count(): int
     {
-        dump($articles);
+        return count($this->sources);
+    }
+
+    public function getStats(): array
+    {
+        $stats = [];
+        $stats[get_class($this)] = $this->count();
+        /** @var $source ArticleAbstractSource */
+        foreach ($this->getSources() as $source) {
+            $stats[get_class($source)] = $source->count();
+        }
+
+        return $stats;
     }
 }

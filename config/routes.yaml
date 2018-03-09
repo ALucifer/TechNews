@@ -1,19 +1,29 @@
 index:
-    path: /
+#    path: /
+    path: /{_locale}
     controller: App\Controller\TechNews\IndexController::index
+    defaults: { _locale: 'fr' }
+    requirements:
+      _locale: en|fr
 
 accueil:
-  path: /accueil
+  path: /{_locale}/accueil
   controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
   defaults:
     route: index
     permanent: true # code http qui change en fonction de true or false
+  requirements:
+    _locale: en|fr
 
 mentions_legales:
-    path:         /mentions-legales
+    path:         /{_locale}/mentions-legales
     controller:   Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
     defaults:
         template: static/mentionslegales.html.twig
+    requirements:
+            _locale: en|fr
 
 deconnexion:
-    path: /deconnexion
+    path: /{_locale}/deconnexion
+    requirements:
+        _locale: en|fr

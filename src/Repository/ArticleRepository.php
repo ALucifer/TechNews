@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -84,5 +85,20 @@ class ArticleRepository extends ServiceEntityRepository
             ->setParameter('special', true)
             ->getQuery()
             ->getResult();
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function findTotalArticles()
+    {
+        try {
+            return $this->createQueryBuilder('a')
+                ->select('COUNT(a)')
+                ->getQuery()
+                ->getSingleScalarResult();
+        }catch (NonUniqueResultException $e) {
+            return 0;
+        }
     }
 }

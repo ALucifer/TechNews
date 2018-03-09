@@ -33,10 +33,15 @@ class SecurityController extends Controller
 
     /**
      * Inscription d'un utilisateur
-     * @Route("/register", name="security_register", methods={"GET","POST"})
      * @param Request $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/{_locale}/register",
+     *      name="security_register",
+     *      methods={"GET","POST"},
+     *      requirements={"_locale": "en|fr"}
+     * )
      */
     public function register (Request $request, UserPasswordEncoderInterface $passwordEncoder, TokenGeneratorInterface $tokenGenerator,\Swift_Mailer $mailer)
     {
@@ -78,7 +83,10 @@ class SecurityController extends Controller
      * @param AuthenticationUtils $authenticationUtils
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/connexion", name="security_connexion")
+     * @Route("/{_locale}/connexion",
+     *     name="security_connexion",
+     *     requirements={"_locale": "en|fr"}
+     *     )
      */
     public function connexion(AuthenticationUtils $authenticationUtils )
     {
@@ -99,7 +107,10 @@ class SecurityController extends Controller
      * @param MyMailer $myMailer
      * @return \Symfony\Component\HttpFoundation\Response
      *
-     * @Route("/forgot-password", name="security_forgot_password")
+     * @Route("/{_locale}/forgot-password",
+     *      name="security_forgot_password",
+     *      requirements={"_locale": "en|fr"}
+     *      )
      */
     public function forgotPassword(Request $request, TokenGeneratorInterface $tokenGenerator, MyMailer $myMailer)
     {

@@ -98,4 +98,13 @@ class YamlSource extends ArticleAbstractSource
 
         return $article;
     }
+
+    /**
+     * Retourne le nombre d'éléments de chaque source.
+     * @return int
+     */
+    public function count(): int
+    {
+        return count($this->articles);
+    }
 }
