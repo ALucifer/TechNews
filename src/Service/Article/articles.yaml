@@ -1,0 +1,116 @@
+data:
+  article1:
+    id: 1
+    titre: 'Titre 1'
+    contenu: '<p>Mon contenu de article 1 </p>'
+    featuredimage: '1.jpg'
+    special: false
+    spotlight: true
+    datecreation: 2018-02-27 16:00:00
+    categorie:
+      id: 1
+      libelle: 'Businnes'
+    auteur:
+      id: 1
+      prenom: 'Alexis'
+      nom: 'COUBARD'
+      email: 'test@test.com'
+  article2:
+      id: 2
+      titre: 'Titre 2'
+      contenu: '<p>Mon contenu de article 2 </p>'
+      featuredimage: '2.jpg'
+      special: false
+      spotlight: true
+      datecreation: 2018-02-27 16:00:00
+      categorie:
+        id: 1
+        libelle: 'Businnes'
+      auteur:
+        id: 2
+        prenom: 'test'
+        nom: 'TEST'
+        email: 'test@test.com'
+  article3:
+      id: 3
+      titre: 'Titre 3'
+      contenu: '<p>Mon contenu de article 3 </p>'
+      featuredimage: '3.jpg'
+      special: false
+      spotlight: true
+      datecreation: 2018-02-27 16:00:00
+      categorie:
+        id: 1
+        libelle: 'Businnes'
+      auteur:
+        id: 2
+        prenom: 'test'
+        nom: 'TEST'
+        email: 'test@test.com'
+  article4:
+      id: 4
+      titre: 'Titre 4'
+      contenu: '<p>Mon contenu de article 4 </p>'
+      featuredimage: '4.jpg'
+      special: false
+      spotlight: true
+      datecreation: 2018-02-27 16:00:00
+      categorie:
+        id: 2
+        libelle: 'Businnes'
+      auteur:
+        id: 3
+        prenom: 'test'
+        nom: 'TEST'
+        email: 'test@test.com'
+  article5:
+      id: 5
+      titre: 'Titre 5'
+      contenu: '<p>Mon contenu de article 5 </p>'
+      featuredimage: '4.jpg'
+      special: false
+      spotlight: true
+      datecreation: 2018-02-27 16:00:00
+      categorie:
+        id: 1
+        libelle: 'Businnes'
+      auteur:
+        id: 2
+        prenom: 'test'
+        nom: 'TEST'
+        email: 'test@test.com'
+  article6:
+      id: 10
+      titre: 'Titre 5'
+      contenu: '<p>Mon contenu de article 5 </p>'
+      featuredimage: '4.jpg'
+      special: false
+      spotlight: true
+      datecreation: 2018-02-27 16:00:00
+      categorie:
+        id: 1
+        libelle: 'Businnes'
+      auteur:
+        id: 2
+        prenom: 'test'
+        nom: 'TEST'
+        email: 'test@test.com'
+  article7:
+        id: 15
+        titre: 'Titre 5'
+        contenu: '<p>Mon contenu de article 5 </p>'
+        featuredimage: '4.jpg'
+        special: false
+        spotlight: true
+        datecreation: 2018-02-27 16:00:00
+        categorie:
+          id: 1
+          libelle: 'Businnes'
+        auteur:
+          id: 2
+          prenom: 'test'
+          nom: 'TEST'
+          email: 'test@test.com'
+
+
+

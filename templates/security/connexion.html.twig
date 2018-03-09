@@ -1,0 +1,53 @@
+{% extends 'layout.html.twig' %}
+
+{% set active = 'connexion' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-6 col-xs-push-3">
+            <h2 class="text-center">Connexion</h2>
+
+            {% if error %}
+                <div class="alert alert-danger">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            {% if app.request.get('inscription') == 'success' %}
+                <div class="alert alert-success">
+                    <p class="text-center"><i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i></p>
+                    <p class="text-center">Félicitation, votre inscription est effective.
+                        <br>Vous pouvez maintenant vous connecter.</p>
+                </div>
+            {% endif %}
+
+            <form action="{{ url('security_connexion') }}" method="post" class="form-horizontal">
+
+                <div class="form-group">
+                    <div class="col-xs-6">
+                        <input name="_username"
+                               value="{{ last_email }}"
+                               class="form-control" required type="email"
+
+                               placeholder="Saisissez votre Email">
+                    </div>
+                    <div class="col-xs-6">
+                        <input name="_password"
+                               class="form-control" required type="password"
+                               placeholder="*******">
+                    </div>
+                </div>
+
+                <input type="hidden" name="_target_path" value="/accueil" />
+                <input type="submit" class="btn btn-block btn-primary" value="Connexion">
+
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_title %}
+
+{% endblock %}
+

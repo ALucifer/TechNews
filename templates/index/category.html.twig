@@ -1,0 +1,80 @@
+{% extends "layout.html.twig" %}
+
+{% set active = app.request.get('libelle') | capitalize %}
+{% block page_title %}
+    {{ active }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <!--colleft-->
+        <div class="col-md-8 col-sm-12">
+            {% if articles is not empty %}
+            <div class="box-caption">
+                <span>{{ active }}</span>
+            </div>
+                <!--list-news-cate-->
+            <div class="list-news-cate">
+                {% for article in articles %}
+                    <article class="news-cate-item">
+                        <div class="row">
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <a href="{{ url(
+                                    'index_article',
+                                    {'category': article.category.libelle | slugify,
+                                        'slug': article.titre | slugify,
+                                        'id': article.id}
+                                )}}">
+                                    <img alt="" src="{{ asset('images/product/' ~ article.featuredimage) }}">
+                                </a>
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-xs-12">
+                                <h3><a href="{{ url(
+                                        'index_article',
+                                        {'category': article.category.libelle | slugify,
+                                            'slug': article.titre | slugify,
+                                            'id': article.id}
+                                    )}}"
+                                    >{{ article.titre }}</a></h3>
+                                <div class="meta-post">
+                                    <a href="{{ url('index_auteur',{'nom': article.auteur.nom , 'prenom' : article.auteur.prenom }) }}">
+                                        {{ article.auteur.prenom ~ ' ' ~ article.auteur.nom }}
+                                    </a>
+                                    <em></em>
+                                    <span>
+                                        {{ article.datecreation | date('d/m/Y') }}
+                                    </span>
+                                </div>
+                                Nulla quis lorem ut libero malesuada feugiat. Cras ultricies ligula sed magna dictum porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere...
+                            </div>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+
+            <div class="paging">
+                <a href="#">Prev</a>
+                <a href="#" class="current">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">Next</a>
+            </div>
+
+
+        {% else %}
+            <div class="alert alert-danger">
+                <strong>
+                    Il n'y a actuellement aucun articles dans cette catégorie
+                </strong>
+            </div>
+        {% endif %}
+        </div>
+        {# SideBar#}
+        {{ render(controller('App\\Controller\\TechNews\\IndexController::sidebar')) }}
+
+    </div>
+{% endblock %}
+

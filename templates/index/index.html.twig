@@ -1,0 +1,98 @@
+{% extends "layout.html.twig" %}
+
+{% block page_title %}
+    Accueil
+{% endblock %}
+
+{% set active = 'index' %}
+
+{% block content %}
+    <div class="row">
+        <!--colleft-->
+        <div class="col-md-8 col-sm-12">
+            <div class="box-caption">
+                <span>spotlight</span>
+            </div>
+            <!--sportlight-->
+            <section class="owl-carousel owl-spotlight">
+                {% for spotlight in spotlights  %}
+                    <div>
+                        <article class="spotlight-item">
+                            <div class="spotlight-img">
+                                <img alt="" src="{{ asset('images/product/' ~ spotlight.featuredImage) }}" class="img-responsive" />
+                                <a href="{{ url('index_category', {'libelle': spotlight.category.libelle |slugify }) }}" class="cate-tag">{{ spotlight.category.libelle }}</a>
+                            </div>
+                            <div class="spotlight-item-caption">
+                                <h2 class="font-heading">
+                                    <a href="{{ url(
+                                        'index_article',
+                                        {'category': spotlight.category.libelle | slugify,
+                                            'slug': spotlight.titre | slugify,
+                                            'id': spotlight.id}
+                                    )}}">
+                                        {{ spotlight.titre }}
+                                    </a>
+                                </h2>
+                                <div class="meta-post">
+                                    <a href="{{ url('index_auteur',{'nom': spotlight.auteur.nom , 'prenom' : spotlight.auteur.prenom }) }}">
+                                        {{ spotlight.auteur.nom ~ ' ' ~ spotlight.auteur.prenom }}
+                                    </a>
+                                    <em></em>
+                                    <span>
+                                        {{ spotlight.dateCreation | date('d/m/Y') }}
+                                    </span>
+                                </div>
+                                {{ spotlight.contenu | accroche }}
+                            </div>
+                        </article>
+                    </div>
+                {% endfor %}
+            </section>
+
+            <!--spotlight-thumbs-->
+            <section class="spotlight-thumbs">
+                <div class="row">
+
+                    {% for article in articles  %}
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="spotlight-item-thumb">
+                                <div class="spotlight-item-thumb-img">
+                                    <a href="{{ url(
+                                        'index_article',
+                                        {'category': article.category.libelle |slugify,
+                                            'slug': article.titre | slugify,
+                                            'id': article.id}
+                                    )}}">
+                                        <img alt="" src="{{ asset('images/product/' ~ article.featuredimage) }}" />
+                                    </a>
+                                    <a href="{{ url('index_category', {'libelle': article.category.libelle |slugify }) }}" class="cate-tag">
+                                        {{ article.category.libelle }}
+                                    </a>
+                                </div>
+                                <h3>
+                                    <a href="{{ url(
+                                        'index_article',
+                                        {'category': article.category.libelle | slugify,
+                                            'slug': article.titre | slugify,
+                                            'id': article.id}
+                                    )}}">{{ article.titre }}</a>
+                                </h3>
+                                <div class="meta-post">
+                                    <a href="{{ url('index_auteur',{'nom': article.auteur.nom , 'prenom' : article.auteur.prenom }) }}">
+                                        {{ article.auteur.prenom ~ ' ' ~ article.auteur.nom }}
+                                    </a>
+                                    <em></em>
+                                    <span>
+                                        {{ article.datecreation | date('d/m/Y') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </section>
+        </div>
+        {{ render(controller('App\\Controller\\TechNews\\IndexController::sidebar')) }}
+
+{% endblock %}

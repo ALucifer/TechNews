@@ -1,0 +1,19 @@
+{% extends 'layout.html.twig' %}
+
+{% set active = "forgot" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-6 col-xs-push-3">
+            <h2 class="text-center">Mot de passe oublié</h2>
+            {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+            {{ form(form) }}
+            {{ token }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_title %}
+
+{% endblock %}
+
