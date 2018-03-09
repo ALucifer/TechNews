@@ -12,6 +12,7 @@ namespace App\Service\Article;
 use App\Entity\Article;
 use App\Exception\DuplicateCatalogueDataException;
 use Doctrine\Common\Collections\ArrayCollection;
+use ReflectionClass;
 
 class ArticleCatalogue implements ArticleCatalogueInterface
 {
@@ -95,13 +96,18 @@ class ArticleCatalogue implements ArticleCatalogueInterface
         return count($this->sources);
     }
 
+    /**
+     * @return array
+     * @throws \ReflectionException
+     */
     public function getStats(): array
     {
         $stats = [];
-        $stats[get_class($this)] = $this->count();
+        $stats[(new ReflectionCLass(get_class($this)))->getShortName()] = $this->count();
         /** @var $source ArticleAbstractSource */
         foreach ($this->getSources() as $source) {
-            $stats[get_class($source)] = $source->count();
+            $name = (new ReflectionCLass(get_class($source)))->getShortName();
+            $stats[$name] = $source->count();
         }
 
         return $stats;
